@@ -19,6 +19,7 @@ public class Invoice {
 
     @ManyToOne
     @JoinColumn(name = "idCustomer")
+    @JsonBackReference
     private Customer customer;
     
     @OneToOne

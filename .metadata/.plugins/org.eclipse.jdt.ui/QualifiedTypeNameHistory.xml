@@ -8,7 +8,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
     <fullyQualifiedTypeName name="com.example.demo.payment.PaymentReceipt"/>
     <fullyQualifiedTypeName name="com.example.demo.order.Order"/>
@@ -21,12 +20,20 @@
     <fullyQualifiedTypeName name="com.example.demo.detailorder.DetailOrder"/>
     <fullyQualifiedTypeName name="com.example.demo.shipping.Shipping"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="com.example.demo.rank.ranksRepository"/>
-    <fullyQualifiedTypeName name="com.example.demo.rank.Ranks"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatusCode"/>
     <fullyQualifiedTypeName name="org.apache.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
     <fullyQualifiedTypeName name="java.util.Set"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="aj.org.objectweb.asm.Type"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonTypeInfo.Id"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
+    <fullyQualifiedTypeName name="jakarta.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.example.demo.rank.Ranks"/>
+    <fullyQualifiedTypeName name="com.example.demo.rank.ranksRepository"/>
+    <fullyQualifiedTypeName name="com.example.demo.vidu.Customer1Repository"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
 </qualifiedTypeNameHistroy>
