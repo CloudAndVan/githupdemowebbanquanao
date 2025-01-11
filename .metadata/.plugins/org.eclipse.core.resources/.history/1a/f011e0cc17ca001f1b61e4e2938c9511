@@ -1,0 +1,81 @@
+package com.example.demo.customer;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.Optional;
+import com.example.demo.rank.Ranks;
+import com.example.demo.rank.ranksRepository;
+
+@RestController
+@CrossOrigin(origins = "*")
+public class customerController {
+
+    @Autowired
+    private customerRepository customerRepository;
+    
+    @Autowired
+    private ranksRepository ranksRepository;
+
+    @GetMapping("/getAllCustomers")
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    @GetMapping("/getCustomerById/{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable String id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        
+        if (customer.isPresent()) {
+            return ResponseEntity.ok(customer.get());
+        } else {
+            return ResponseEntity.status(404).body(null); // Nếu không tìm thấy khách hàng
+        }
+    }
+
+    @PostMapping("/saveOrUpdateCustomer")
+    public ResponseEntity<String> saveOrUpdateCustomer(@RequestBody Customer customer) {
+        // Kiểm tra nếu Customer đã tồn tại
+        Optional<Customer> existingCustomer = customerRepository.findById(customer.getIdCustomer());
+        
+        if (existingCustomer.isPresent()) {
+            // Nếu tồn tại, cập nhật thông tin khách hàng
+            Customer updatedCustomer = existingCustomer.get();
+            updatedCustomer.setName(customer.getName());
+            updatedCustomer.setPhoneNumber(customer.getPhoneNumber());
+            updatedCustomer.setEmail(customer.getEmail());
+            // ... Các trường khác nếu cần thiết
+            customerRepository.save(updatedCustomer);
+            customer.setRank(updatedCustomer.getRank());
+            return ResponseEntity.status(200).body("Customer updated successfully.");
+        }else {
+        	Ranks newRank = new Ranks();
+            newRank.setIdRank("RANK_DEFAULT");  // ID mặc định của Rank
+            newRank.setNameRank("Rank Mặc Định"); // Tên mặc định của Rank
+            newRank.setCustomer(customer); // Liên kết Rank với Customer
+            customer.setRank(newRank); // Gán Rank mới cho Customer
+        }
+        customerRepository.save(customer);
+        ranksRepository.save(customer.getRank());
+
+        return ResponseEntity.status(201).body("Customer created successfully.");
+    }
+
+    @PostMapping("/deleteCustomer/{id}")
+    public ResponseEntity<String> deleteCustomer(@PathVariable String id) {
+        Optional<Customer> customer = customerRepository.findById(id);
+        
+        if (customer.isPresent()) {
+            customerRepository.deleteById(id);
+            return ResponseEntity.status(200).body("Customer deleted successfully.");
+        } else {
+            return ResponseEntity.status(404).body("Customer not found.");
+        }
+    }
+}

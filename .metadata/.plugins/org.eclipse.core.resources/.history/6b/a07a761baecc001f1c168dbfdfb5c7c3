@@ -1,0 +1,58 @@
+package com.example.demo.vidu;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
+
+@Entity
+public class Customer1 {
+    @Id
+    private String idcustomer;
+    private String name;
+    private String phonenumber;
+    private String email;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order1> orders;
+
+    // Getters và Setters
+    public String getidcustomer() {
+        return idcustomer;
+    }
+
+    public void setidcustomer(String idcustomer) {
+        this.idcustomer = idcustomer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getphonenumber() {
+        return phonenumber;
+    }
+
+    public void setphonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Order1> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order1> orders) {
+        this.orders = orders;
+    }
+}

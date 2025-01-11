@@ -1,0 +1,55 @@
+package com.example.demo.shipping;
+
+import jakarta.persistence.*;
+
+import com.example.demo.detailorder.DetailOrder;
+import com.example.demo.order.Orders;
+import com.example.demo.shippingcompany.ShippingCompany; // Import ShippingCompany class
+
+@Entity
+@Table(name = "shipping")
+public class Shipping {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_shipping")
+    private String idShipping; // Primary key
+
+    @ManyToOne
+    @JoinColumn(name = "shipping_company_id", referencedColumnName = "id_shipping_company", nullable = false)
+    private ShippingCompany shippingCompany; // Many-to-One relationship with Shipping_Company
+
+    @Column(name = "phone_number")
+    private String phoneNumber; // Phone number of the shipping company
+
+    @ManyToOne
+    @JoinColumn(name = "id_detail_order", referencedColumnName = "idDetailOrder") // Correct column mapping
+    private DetailOrder detailOrder;
+    
+
+    // Getters and Setters
+    public String getIdShipping() {
+        return idShipping;
+    }
+
+    public void setIdShipping(String idShipping) {
+        this.idShipping = idShipping;
+    }
+
+    public ShippingCompany getShippingCompany() {
+        return shippingCompany;
+    }
+
+    public void setShippingCompany(ShippingCompany shippingCompany) {
+        this.shippingCompany = shippingCompany;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+}

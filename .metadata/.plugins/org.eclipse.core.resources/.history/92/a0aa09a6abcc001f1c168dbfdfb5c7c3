@@ -1,0 +1,19 @@
+package com.example.demo.customer;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomerService {
+
+    @Autowired
+    private customerRepository customerRepository;  // Inject repository để tương tác với database
+
+    // Phương thức lưu hoặc cập nhật khách hàng
+    public Customer saveOrUpdateCustomer(Customer customer) {
+        // Kiểm tra nếu customer đã tồn tại, bạn có thể cập nhật hoặc lưu mới
+        return customerRepository.save(customer);
+    }
+
+    // Các phương thức khác nếu cần
+}

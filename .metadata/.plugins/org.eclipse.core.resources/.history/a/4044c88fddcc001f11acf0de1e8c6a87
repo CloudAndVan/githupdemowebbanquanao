@@ -1,0 +1,26 @@
+package com.example.demo.text;
+
+import java.util.Set;
+
+import jakarta.persistence.*;
+
+@Entity
+public class text2 {
+    @Id
+    private String idText; // Primary Key
+    private String name;
+    
+    @OneToOne
+    @JoinColumn(name = "idText") // Tham chiếu đến khóa chính của `text`
+    private text text1;
+
+    @ManyToMany
+    @JoinTable(
+        name = "text4",
+        joinColumns = @JoinColumn(name = "text2_id"),
+        inverseJoinColumns = @JoinColumn(name = "text3_id")
+    )
+    private Set<text3> text3Set;
+    
+    
+}

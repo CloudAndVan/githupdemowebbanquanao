@@ -1,0 +1,51 @@
+package com.example.demo.customer;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+package com.example.demo.rank.rankReponsitory;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@CrossOrigin(origins = "*")
+public class customerController {
+
+    @Autowired
+    private customerRepository customerRepository;
+    
+    @Autowired
+    private RanksRepository ranksRepository; // Cần phải tạo repository cho Rank
+    @GetMapping("/getAllCustomers")
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+
+    @GetMapping("/getCustomerById/{id}")
+    public Optional<Customer> getCustomerById(String id) {
+        return customerRepository.findById(id);
+    }
+    
+    @PostMapping("/saveOrUpdateCustomer")
+    public ResponseEntity<String> saveOrUpdateCustomer(@RequestBody Customer customer) {
+        // Kiểm tra nếu Customer đã tồn tại
+        Optional<Customer> existingCustomer = customerRepository.findById(customer.getIdCustomer());
+        if (existingCustomer.isPresent()) {
+            return ResponseEntity.status(400).body("Customer with this ID already exists.");
+        }
+
+        // Lưu Customer (đã xử lý tự động gán account và password)
+        customerRepository.save(customer);
+        return ResponseEntity.status(201).body("Customer created successfully.");
+    }
+
+
+    @PostMapping("/deleteCustomer")
+    public void deleteCustomer(@RequestBody String id) {
+        customerRepository.deleteById(id);
+    }
+}

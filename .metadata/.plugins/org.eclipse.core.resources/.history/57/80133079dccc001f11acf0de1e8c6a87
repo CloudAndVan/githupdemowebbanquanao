@@ -1,0 +1,39 @@
+package com.example.demo.text;
+
+import jakarta.persistence.*;
+
+@Entity
+public class text {
+    @Id
+    private String idText; // Primary Key
+    private String name;
+    
+    @OneToOne(mappedBy = "text1", cascade = CascadeType.ALL)
+    private text2 text2;
+
+    public String getIdText() {
+        return idText;
+    }
+
+    public void setIdText(String idText) {
+        this.idText = idText;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public text(String idText, String name) {
+        super();
+        this.idText = idText;
+        this.name = name;
+    }
+
+    public text() {
+        super();
+    }
+}

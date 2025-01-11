@@ -1,0 +1,37 @@
+package com.example.demo.customer;
+
+import jakarta.persistence.*;
+import com.example.demo.order.Orders;
+import com.example.demo.invoice.Invoice;
+import com.example.demo.rank.Ranks;
+import com.example.demo.text.text2;
+import com.example.demo.vidu.Order1;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import aj.org.objectweb.asm.Type;
+
+import java.util.List;
+
+@Entity
+public class Customer {
+    @Id
+    private String idCustomer; // Primary Key
+    
+    private String name;
+    private String phoneNumber;
+    private String email;
+    private String account;
+    private String password;
+
+    
+    @OneToMany(mappedBy = "customer")
+    private List<Orders> orders;
+
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Ranks rank;
+    
+    @OneToMany(mappedBy = "customer")
+    private List<Invoice> invoices;
+
+	
+}

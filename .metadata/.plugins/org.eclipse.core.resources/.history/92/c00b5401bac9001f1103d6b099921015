@@ -1,0 +1,40 @@
+package com.example.demo.type;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@CrossOrigin(origins = "*")
+public class shippingcompanyController {
+
+    @Autowired
+    private shippingcompanyRepository ShippingcompanyRepository;
+
+    @GetMapping("/getAlltypes")
+    public List<ShippingCompany> getAlltypes() {
+        return shippingcompanyRepository.findAll();
+    }
+
+    @GetMapping("/gettypeById/{id}")
+    public Optional<ShippingCompany> gettypeById(String id) {
+        return shippingcompanyRepository.findById(id);
+    }
+    
+    @PostMapping("/saveOrUpdatetype")
+    public void saveOrUpdatetype(@RequestBody ShippingCompany shippingcompany) {
+    	shippingcompanyRepository.save(shippingcompany);
+    }
+
+    @PostMapping("/deletetype")
+    public void deletetype(@RequestBody int id) {
+    	shippingcompanyRepository.deleteById(id);
+    }
+}

@@ -1,0 +1,63 @@
+package com.example.demo.text;
+
+import jakarta.persistence.*;
+
+@Entity
+public class text4 {
+    @Id
+    private String idText;
+    private String name;
+    @ManyToOne
+    @JoinColumn(name = "text3_id")
+    private text3 text3;
+
+    @ManyToOne
+    @JoinColumn(name = "text2_id")
+    private text2 text2;
+
+	public String getIdText() {
+		return idText;
+	}
+
+	public void setIdText(String idText) {
+		this.idText = idText;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public text3 getText3() {
+		return text3;
+	}
+
+	public void setText3(text3 text3) {
+		this.text3 = text3;
+	}
+
+	public text2 getText2() {
+		return text2;
+	}
+
+	public void setText2(text2 text2) {
+		this.text2 = text2;
+	}
+
+	public text4(String idText, String name, text3 text3, text2 text2) {
+		super();
+		this.idText = idText;
+		this.name = name;
+		this.text3 = text3;
+		this.text2 = text2;
+	}
+
+	public text4() {
+		super();
+	}
+
+    
+}

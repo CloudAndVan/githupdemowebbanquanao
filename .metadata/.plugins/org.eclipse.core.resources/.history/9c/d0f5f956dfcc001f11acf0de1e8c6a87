@@ -1,0 +1,15 @@
+package com.example.demo.rank;
+
+import jakarta.persistence.*;
+import com.example.demo.customer.Customer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+public class Ranks {
+    @Id
+    private String idRank; // Primary Key
+    private String nameRank;
+
+
+  
+}

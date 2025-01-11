@@ -1,0 +1,19 @@
+package com.example.demo.rank;
+
+import jakarta.persistence.*;
+import com.example.demo.customer.Customer;
+import com.example.demo.text.text;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+public class Ranks {
+    @Id
+    private String idRank; // Primary Key
+    private String nameRank;
+    
+    @OneToOne
+    @JoinColumn(name = "idCustomer") // Tham chiếu đến khóa chính của `text`
+    private Customer customer;
+
+  
+}

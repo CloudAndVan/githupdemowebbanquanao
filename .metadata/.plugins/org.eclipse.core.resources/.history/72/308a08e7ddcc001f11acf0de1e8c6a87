@@ -1,0 +1,66 @@
+package com.example.demo.text;
+
+import java.util.Set;
+
+import jakarta.persistence.*;
+
+@Entity
+public class text3 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id; // Primary Key
+    private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "idText") // Tham chiếu đến khóa chính của `text`
+    private text text;
+
+    @ManyToMany(mappedBy = "text3Set")
+    private Set<text2> text2Set;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public text getText() {
+		return text;
+	}
+
+	public void setText(text text) {
+		this.text = text;
+	}
+
+	public Set<text2> getText2Set() {
+		return text2Set;
+	}
+
+	public void setText2Set(Set<text2> text2Set) {
+		this.text2Set = text2Set;
+	}
+
+	public text3(Long id, String name, text text, Set<text2> text2Set) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.text = text;
+		this.text2Set = text2Set;
+	}
+
+	public text3() {
+		super();
+	}
+
+	
+}
